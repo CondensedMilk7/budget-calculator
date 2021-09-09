@@ -3,27 +3,17 @@
     <div class="income-column">
       <h1>Income</h1>
       <div class="budget-items">
-        <app-budget-item-card
-          [isIncome]="true"
-          style="margin-bottom: 20px"
-        ></app-budget-item-card>
-        <app-budget-item-card
-          [isIncome]="true"
-          style="margin-bottom: 20px"
-        ></app-budget-item-card>
+        <div *ngFor="let item of income">
+          <app-budget-item-card [item]="item"></app-budget-item-card>
+        </div>
       </div>
     </div>
     <div class="expenses-column">
       <h1>Expenses</h1>
       <div class="budget-items">
-        <app-budget-item-card
-          [isIncome]="false"
-          style="margin-bottom: 20px"
-        ></app-budget-item-card>
-        <app-budget-item-card
-          [isIncome]="false"
-          style="margin-bottom: 20px"
-        ></app-budget-item-card>
+        <div *ngFor="let item of expenses">
+          <app-budget-item-card [item]="item"></app-budget-item-card>
+        </div>
       </div>
     </div>
   </div>
