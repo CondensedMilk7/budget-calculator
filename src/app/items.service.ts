@@ -42,4 +42,15 @@ export class ItemsService {
     }
     this.changeInItems.next();
   }
+
+  editItem(editedItem: BudgetItem) {
+    if (editedItem.amount >= 0) {
+      const index = this.sortedItems.income.indexOf(editedItem);
+      this.sortedItems.income[index] = editedItem;
+    } else {
+      const index = this.sortedItems.expenses.indexOf(editedItem);
+      this.sortedItems.expenses[index] = editedItem;
+    }
+    this.changeInItems.next();
+  }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BudgetItem } from 'src/shared/models/budget-item.model';
-import { SortedBudgetItems } from 'src/shared/models/sorted-budget-items.model';
 import { ItemsService } from '../items.service';
 
 @Component({

@@ -8,6 +8,7 @@ import { AddItemFormComponent } from './add-item-form/add-item-form.component';
 import { BudgetItemListComponent } from './budget-item-list/budget-item-list.component';
 import { BudgetItemCardComponent } from './budget-item-list/budget-item-card/budget-item-card.component';
 import { FormsModule } from '@angular/forms';
+import { EditItemModalComponent } from './edit-item-modal/edit-item-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     MainPageComponent,
     AddItemFormComponent,
     BudgetItemListComponent,
-    BudgetItemCardComponent
+    BudgetItemCardComponent,
+    EditItemModalComponent
   ],
   imports: [
     BrowserModule,
