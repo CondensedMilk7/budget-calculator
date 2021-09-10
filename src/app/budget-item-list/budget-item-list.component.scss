@@ -7,6 +7,12 @@
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 780px) {
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 100%;
+  }
+
   .budget-items-container {
     display: flex;
     max-width: 600px;
