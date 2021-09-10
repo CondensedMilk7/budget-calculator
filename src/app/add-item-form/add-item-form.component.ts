@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BudgetItem } from 'src/shared/models/budget-item.model';
-import { ItemsService } from '../items.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-item-form',
@@ -9,14 +9,27 @@ import { ItemsService } from '../items.service';
   styleUrls: ['./add-item-form.component.scss'],
 })
 export class AddItemFormComponent implements OnInit {
-  @Input() item = new BudgetItem('', null);
+  @Output() formSubmitter = new EventEmitter<BudgetItem>();
+  @Input() item;
 
-  constructor(private itemsService: ItemsService) {}
+  isNewItem: boolean;
+  btnTxt: string;
 
-  ngOnInit(): void {}
+  constructor() {}
+
+  ngOnInit() {
+    if (this.item) {
+      this.isNewItem = false;
+      this.btnTxt = 'Save';
+    } else {
+      this.isNewItem = true;
+      this.item = new BudgetItem('', null);
+      this.btnTxt = 'Add';
+    }
+  }
 
   onSubmit(form: NgForm) {
-    this.itemsService.addItem(form.value);
+    this.formSubmitter.emit(form.value);
     form.reset();
   }
 }

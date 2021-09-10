@@ -17,4 +17,8 @@ export class BudgetItemCardComponent implements OnInit {
   onRemoveItem() {
     this.itemsService.removeItem(this.item);
   }
+
+  onCardClicked() {
+    this.itemsService.itemBeingEdited.next(this.item);
+  }
 }

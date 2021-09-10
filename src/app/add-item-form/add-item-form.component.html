@@ -28,11 +28,12 @@
       </div>
       <div class="field is-narrow">
         <button
-          class="button is-primary"
+          class="button"
+          [ngClass]="{ 'is-primary': isNewItem, 'is-success': !isNewItem }"
           type="submit"
           [disabled]="itemForm.invalid"
         >
-          Add
+          {{ btnTxt }}
         </button>
       </div>
     </div>

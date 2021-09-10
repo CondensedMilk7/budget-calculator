@@ -7,19 +7,13 @@ import { SortedBudgetItems } from 'src/shared/models/sorted-budget-items.model';
 export class ItemsService {
   changeInItems = new Subject<void>();
 
+  itemBeingEdited = new Subject<BudgetItem>();
+
   sortedItems = new SortedBudgetItems(
-    // Income
-    [
-      { amount: 20, description: 'test1' },
-      { amount: 15, description: 'test2' },
-      { amount: 200, description: 'test3' },
-    ],
-    // Expenses
-    [
-      { amount: -75, description: 'test4' },
-      { amount: -20, description: 'test5' },
-      { amount: -100, description: 'test6' },
-    ]
+    // sortedItems.income
+    [{ amount: 900, description: 'Salary' }],
+    // sortedItems.expenses
+    [{ amount: -245, description: 'Rent' }]
   );
 
   addItem(newItem: BudgetItem) {
@@ -43,13 +37,23 @@ export class ItemsService {
     this.changeInItems.next();
   }
 
-  editItem(editedItem: BudgetItem) {
-    if (editedItem.amount >= 0) {
-      const index = this.sortedItems.income.indexOf(editedItem);
-      this.sortedItems.income[index] = editedItem;
+  editItem(oldItem: BudgetItem, editedItem: BudgetItem) {
+    if (oldItem.amount >= 0) {
+      const index = this.sortedItems.income.indexOf(oldItem);
+      if (editedItem.amount >= 0) {
+        this.sortedItems.income[index] = editedItem;
+      } else {
+        this.sortedItems.income.splice(index, 1);
+        this.sortedItems.expenses.push(editedItem);
+      }
     } else {
-      const index = this.sortedItems.expenses.indexOf(editedItem);
-      this.sortedItems.expenses[index] = editedItem;
+      const index = this.sortedItems.expenses.indexOf(oldItem);
+      if (editedItem.amount < 0) {
+        this.sortedItems.expenses[index] = editedItem;
+      } else {
+        this.sortedItems.expenses.splice(index, 1);
+        this.sortedItems.income.push(editedItem);
+      }
     }
     this.changeInItems.next();
   }

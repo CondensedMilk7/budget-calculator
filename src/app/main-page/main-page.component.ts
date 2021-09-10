@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BudgetItem } from 'src/shared/models/budget-item.model';
 import { ItemsService } from '../items.service';
@@ -8,7 +8,7 @@ import { ItemsService } from '../items.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnDestroy {
   income: BudgetItem[];
   expenses: BudgetItem[];
 
@@ -28,6 +28,10 @@ export class MainPageComponent implements OnInit {
     this.calculatedBudget = this.calcBudget();
   }
 
+  onSubmit(newItem: BudgetItem) {
+    this.itemsService.addItem(newItem);
+  }
+
   calcBudget() {
     let totalIncome = 0;
     for (let item of this.income) {
@@ -39,8 +43,10 @@ export class MainPageComponent implements OnInit {
       totalExpense += item.amount;
     }
 
-    console.log(`${totalIncome} + ${totalExpense}`);
-
     return totalIncome + totalExpense;
+  }
+
+  ngOnDestroy() {
+    this.itemsSub.unsubscribe();
   }
 }

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BudgetItem } from 'src/shared/models/budget-item.model';
-import { ItemsService } from '../items.service';
 
 @Component({
   selector: 'app-edit-item-modal',
@@ -8,16 +8,14 @@ import { ItemsService } from '../items.service';
   styleUrls: ['./edit-item-modal.component.scss'],
 })
 export class EditItemModalComponent implements OnInit {
-  @Input() item: BudgetItem;
-
-  constructor(private itemsService: ItemsService) {}
+  constructor(
+    public dialogRef: MatDialogRef<EditItemModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public item: BudgetItem
+  ) {}
 
   ngOnInit(): void {}
 
-  onSubmit(form) {
-    const item = form.value;
-    console.log(form);
-    console.log(item);
-    this.itemsService.editItem(item);
+  onSubmit(editedItem) {
+    this.dialogRef.close(editedItem);
   }
 }
