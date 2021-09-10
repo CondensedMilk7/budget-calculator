@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BudgetItem } from 'src/shared/models/budget-item.model';
+import { BudgetItem } from 'src/app/shared/models/budget-item.model';
 import { EventEmitter } from '@angular/core';
 
 @Component({

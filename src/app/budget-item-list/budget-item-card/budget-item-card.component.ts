@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItemsService } from 'src/app/items.service';
-import { BudgetItem } from 'src/shared/models/budget-item.model';
+import { ItemsService } from 'src/app/shared/items.service';
+import { BudgetItem } from 'src/app/shared/models/budget-item.model';
 
 @Component({
   selector: 'app-budget-item-card',

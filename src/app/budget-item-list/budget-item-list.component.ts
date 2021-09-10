@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { BudgetItem } from 'src/shared/models/budget-item.model';
+import { BudgetItem } from 'src/app/shared/models/budget-item.model';
 import { EditItemModalComponent } from '../edit-item-modal/edit-item-modal.component';
-import { ItemsService } from '../items.service';
+import { ItemsService } from '../shared/items.service';
 
 @Component({
   selector: 'app-budget-item-list',

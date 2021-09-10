@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { BudgetItem } from 'src/shared/models/budget-item.model';
-import { ItemsService } from '../items.service';
+import { BudgetItem } from 'src/app/shared/models/budget-item.model';
+import { ItemsService } from '../shared/items.service';
 
 @Component({
   selector: 'app-main-page',

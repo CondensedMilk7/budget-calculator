@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BudgetItem } from 'src/shared/models/budget-item.model';
-import { SortedBudgetItems } from 'src/shared/models/sorted-budget-items.model';
+import { BudgetItem } from 'src/app/shared/models/budget-item.model';
+import { SortedBudgetItems } from 'src/app/shared/models/sorted-budget-items.model';
 
 @Injectable({ providedIn: 'root' })
 export class ItemsService {
